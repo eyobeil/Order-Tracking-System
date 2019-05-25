@@ -1,0 +1,81 @@
+<!DOCTYPE html >
+<html 
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="O. Kalu">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-EmRcsPP774S9MOi4ywB+JXUWjYnBdyInMzG2XsC5siZEUpexqxOMJW358dCYEjPu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+    <title>SRM - an exam spring boot webapp</title>
+</head>
+<body>
+<!-- 	<th:block layout:fragment="header"> -->
+<!-- 	<link rel="stylesheet" type="text/css" th:href="@{/css/productlist.css}" /> -->
+<!-- 	</th:block> -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/"> Order Tracking System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/customer">Customers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/products">Products</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+	<div class="row" style="margin: 5%" >
+		<h2>Customer List</h2> &nbsp;&nbsp;
+		<a href="/customer" class="btn btn-outline-warning">Create a Customer</a>&nbsp;&nbsp;
+		<a href="/" id="linkBackHome"  class="btn btn-primary">Back to home</a><br/><br/>
+		<div>
+		<table class="table table-striped">
+			<thead>
+				
+				<th>Customer Name</th>
+				<th>Email</th>
+				<th>Customer Address</th>
+				<th>Customer Phone Number</th>
+				<th>Customer Points</th>
+				<th>Customer Rate</th>
+				
+				
+			</thead>
+			<tbody>
+				<tr th:each="customer : ${customers}">
+				
+					<td th:text="${customer.firstName}"></td>
+					<td th:text="${customer.email}"></td>	
+					<td th:text="${customer.address}"></td>						
+					<td th:text="${customer.contactPhoneNumber}"></td>
+					<td th:text="${customer.points}"></td>
+					<td th:text="${customer.rate}"></td>
+					
+					
+					<td>
+						<a th:href="@{'/customers/' + ${customer.customerId}}">Edit</a>&nbsp;
+						<a th:href="@{'/customers/delete/' + ${customer.customerId}}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	
+	<th:block layout:fragment="footer">
+	</th:block>
+	
+</body>
+</html>
